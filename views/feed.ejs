@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Otter Connections</title>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="/css/feed.css" rel="stylesheet" type="text/css" />
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+  </script>
+</head>
+<body>
+
+<header>
+	<div class = "head">
+  	<h1>Otter Connections</h1>
+			<a href = "/edit/user">
+				<img src = "<%=user[0].portrait%>">
+			</a>
+  </div>
+</header>
+<nav>
+<a href = "/feed">Home</a>
+<a href = "/weather">Weather</a>
+<a href = "/news">News</a>
+<form action="/logout">
+    <button id = "userLogout" > <i style="font-size:24px" class="fa">&#xf08b;</i> </button>
+</form>
+</nav>
+<main>
+	<div class="main">
+		<div class="posts">
+			<% for (post of posts) { %>
+				<div class="card">
+					<div class="card-head">
+						<div class="pfp">
+							<a href="/user?userId=<%=post.userId%>"><img class="profilePic" src="<%=post.portrait%>" alt="profile"></a>
+						</div>
+						<div class="name">
+							<h4><%=post.username %></h4>
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="paragraph">
+							<div class = "para">
+								<p><%=post.post%></p>
+							</div>
+						</div>
+						<div class="attachment">
+							<div>
+								<% if (post.image != "NULL") { %>
+									<img class="photo" src="<%=post.image%>">
+								<% } %>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						<div class="date">
+							<%=post.dopISO%>
+						</div>
+            <div class="likes">
+							<div id = "likeB" class = "updateL">
+								<button id ="<%=post.postId%>" class ="updateLikes" type="button" style="font-size:20px" ><i class="fa fa-thumbs-up"></i></button>
+								<span class = "likeC" id ="counter" value="<%=post.likes%>"><%=post.likes%></span>
+								
+							</div>
+							<div class = "updateD">
+								<button id = "<%=post.postId%>" class = "updateDislikes" type = "button" style="font-size:20px"><i class="fa fa-thumbs-down"></i></button>
+								<span class = "likeD"id ="counterDislikes"><%=post.dislikes%></span>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+      <% } %>
+    </div>
+    <div class="account">
+    </div>
+    <div class="weatherCard">
+      <div id="icon"><img id="w" src="" alt="Weather icon"></div>
+      <a href="/weather"> <h2 id = "n"></h2> </a>
+      <h3 id = "far"> </h3>
+      <h4 id = "d"></h4>
+      </div>
+    </div>
+    <div id="postMode"> Mode
+    <form name="postColor" method="post" action="#">
+        <input type="radio" name="postColor" value="radio"/>Light<br>
+        <input type="radio" name="postColor" value="radio" />Dark<br>
+        <input type="radio" name="postColor" value="radio" />System<br>
+    </form>
+	</div>
+</main>
+    <a href ="/newPost"><img id = "shell" src = "https://img.pngio.com/clam-clams-icon-clam-png-512_512.png"/><a/>
+<script src="/js/weatherCard.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Otter Connections - Sign Up</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link href="/css/home.css" rel="stylesheet" type="text/css"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+	<header>
+  	<h1>Sign Up</h1>
+	</header>
+
+	<main>
+	<h4>Enter all fields with *</h4>
+	<fieldset>
+		<form display="none" method="POST" action="/user/new" id="form">
+			Username*:<br>
+			<input type="text" name="username" id="username"> <br>
+			<span class = "affectAll" id="hasUser"></span><br>
+					
+			First Name*:<br>
+			<input type="text" name="firstName" id="firstName"> <br>
+			<span class = "affectAll" id="hasfName"></span><br>
+
+			Last Name*:<br>
+			<input type="text" name="lastName" id="lastName"> <br>
+			<span class = "affectAll" id="haslName"></span><br>
+
+			Email*:<br>
+			<input type="text" name="email" id="email"> <br>
+			<span class = "affectAll" id="hasEmail"></span><br>
+
+			Gender:<br>
+			<select name="gender">
+				<option value="">Select Option</option>
+				<option value="F"> Female </option>
+				<option value="M"> Male </option>
+				<option value="NB"> Non-Binary </option>
+				<option value="O"> Other </option>
+			</select>
+			<br><br>
+
+			Date of Birth:<br>
+			<input type="date" name="dob"> <br><br>
+
+			Phone Number:<br>
+			<input type="text" name="phoneNumber"> <br><br>
+
+			Password*:<br>
+			<input type="password" name="password" id="password"> <br>
+			<span class = "affectAll" id="hasPassword"></span><br>
+
+			Retype Password*:<br>
+			<input type="password" name="retype_password" id="retype_password"> <br>
+			<span class = "affectAll" id="match"></span><br>
+
+			<input type="hidden" name="portait">
+		</form>
+		<button id="sign_up">Sign Up</button>
+	</fieldset><br>
+	</main>
+
+	<script>
+
+		$("#sign_up").on("click", checker);
+
+		var fName;
+		var lName;
+		var email;
+		var username;
+		var password;
+		var retype;
+		var data;
+
+		var userExists = false;
+		var notMissing = false;
+		var size = false;
+		var duplicate = false;
+		var size;
+
+		async function setData() {
+			fName = $("#firstName").val();
+			lName = $("#lastName").val();
+		  email = $("#email").val();
+			username = $("#username").val();
+			password = $("#password").val();
+			retype = $("#retype_password").val();
+		}
+		
+		async function getData() {
+			let url = "/user/new/check";
+
+			let response = await fetch(url,
+				{
+					method: 'post',
+					headers: {
+						"Content-Type": "application/json",
+						"Accept": "application/json"
+					}
+				});
+			data = await response.json();
+		}
+
+		async function availableUser(){
+			await getData();
+
+			let users = data.users;
+
+			for(let i = 0; i < users.length; i++){
+				if(username == users[i].username){
+					userExists = true;
+					break;
+				} else {
+					userExists = false;
+				}
+			}
+			
+			if(userExists == false){
+				$("#hasUser").html("");
+				$("#hasUser").css("background-color", "transparent");
+				size = true;
+			}
+			else{
+				$("#hasUser").html("Username is unavailable");
+				$("#hasUser").css("background-color", "red");
+				$("#hasUser").css("color", "black");
+			}
+			if(username == ""){
+				$("#hasUser").html("Cannot be empty");
+				$("#hasUser").css("background-color", "red");
+				$("#hasUser").css("color", "black");
+				size = false;
+			}
+		}
+
+		async function nonempty(){
+			if(fName == ""){
+				notMissing = false;
+				$("#hasfName").html("Cannot be empty");
+				$("#hasfName").css("background-color", "red");
+				$("#hasfName").css("color", "black");
+			}
+      else{
+        notMissing = true;
+      	$("#hasfName").html("");
+        $("#hasfName").css("background-color", "transparent");
+      }
+			if(lName == ""){
+				notMissing = false;
+				$("#haslName").html("Cannot be empty");
+				$("#haslName").css("background-color", "red");
+				$("#haslName").css("color", "black");
+			}
+      else{
+        notMissing = true;
+      	$("#haslName").html("");
+        $("#haslName").css("background-color", "transparent");
+      }
+			if(email == ""){
+				notMissing = false;
+				$("#hasEmail").html("Cannot be empty");
+				$("#hasEmail").css("background-color", "red");
+				$("#hasEmail").css("color", "black");
+			}
+      else{
+        notMissing = true;
+      	$("#hasEmail").html("");
+        $("#hasEmail").css("background-color", "transparent");
+      }
+		}
+
+		function passLength(){
+			if(password.length < 6){
+				$("#hasPassword").html("Password Too Short");
+				$("#hasPassword").css("background-color", "red");
+				$("#hasPassword").css("color", "black");
+				size = false;
+			}
+			else if(password.length > 15){
+				$("#hasPassword").html("Password Too Long");
+				$("#hasPassword").css("background-color", "red");
+				$("#hasPassword").css("color", "black");
+				size = false;
+			}
+			if(password.length > 6 && password.length < 15){
+				$("#hasPassword").html("");
+        $("#hasPassword").css("background-color", "transparent");
+				size = true;
+			}
+		}
+
+		function match(){
+			if(password == retype){
+				$("#match").html("Passwords Match");
+				$("#match").css("background-color", "chartreuse");
+				$("#match").css("color","black");
+				duplicate = true;
+			}
+			else{
+				$("#match").html("Passwords Do Not Match");
+				$("#match").css("background-color", "red");
+				$("#match").css("color","black");
+				duplicate = false;
+			}
+			if(retype.length == 0){
+				$("#match").html("Retype Password");
+				$("#match").css("background-color", "red");
+				$("#match").css("color","black");
+				duplicate = false;
+			}
+		}
+
+		function checker(){
+			setData();
+			availableUser();
+			nonempty();
+			passLength();
+			match();
+
+			if(userExists == false && duplicate == true && size == true && notMissing == true && size == true) {
+				$("#form").submit();
+			}
+		}
+	</script>
+  
+</body>
+</html>

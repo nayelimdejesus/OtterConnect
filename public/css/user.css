@@ -1,0 +1,73 @@
+body{
+	justify-content: center;
+	text-align: center;
+  background-image: linear-gradient(#002E4B, #0081B6);
+  color: white;
+  font-family: Bookman;
+}
+.profilePicture {
+  width: 100%;
+  height: auto;
+}
+h1 {
+  margin-top: 1%;
+  font-size: 300%;
+  text-align: left;
+  /* padding: 1%; */
+  /* display: flex; */
+}
+
+button {
+  color: black;
+  text-align: center;
+  display: inline-block;
+  border-radius: 13px;
+  margin: 1rem;
+  text-decoration: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-family: Bookman;
+  box-shadow: 7px 3px 3px black;
+}
+button{
+  /* width: 5%; */
+  height: 30px;
+}
+.allButtons{
+  justify-content: center;
+  text-align: center;
+  justify-items: center; 
+  margin-right: 20px;
+}
+.main{
+  /* display: flex; */
+	margin: 30px;
+}
+header{
+  text-align: left;
+}
+
+.card{
+  margin-left: 38%;
+  margin-right: 35%;
+  margin-top: 5%;
+  background-color: #002E4B;
+  width: 26%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 10%;
+}
+.card-body{
+  text-align: left;
+}
+
+.userbtns{
+	display: flex;
+	justify-content: center;
+}
+.usernameInfoProfile{
+  text-align: left; 
+  padding-left: 3%;
+}
+h1{
+  padding-left: 3%;
+}

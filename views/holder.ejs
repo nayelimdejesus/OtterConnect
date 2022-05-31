@@ -1,0 +1,51 @@
+<input type="hidden" name="userId" value="<%=user[0].userId%>">
+			<a href="/user?userId=<%=user[0].userId%>"><img class="profilePic" src="<%=user[0].portrait%>"
+					alt="profile"></a>
+
+			<div class="name">
+				<h1>
+					<%=user[0].firstName%>
+						<%=user[0].lastName%>
+				</h1>
+			</div>
+
+      <div class = "bodyForm">
+
+				Username:<br>
+				<input type="text" name="username" value="<%=user[0].username%>"> <br><br>
+
+				First Name:<br>
+				<input type="text" name="firstName" value="<%=user[0].firstName%>"> <br><br>
+
+				Last Name:<br>
+				<input type="text" name="lastName" value="<%=user[0].lastName%>"> <br><br>
+				Email:<br>
+				<input type="text" name="email" value="<%=user[0].email%>"> <br><br>
+
+				Gender:<br>
+				<select name="gender">
+					<option value="">Select Option</option>
+					<option value="F" <%=(user[0].gender=="F" )?"selected":""%>> Female </option>
+					<option value="M" <%=(user[0].gender=="M" )?"selected":""%>> Male </option>
+					<option value="NB" <%=(user[0].gender=="NB" )?"selected":""%>> Non-Binary </option>
+					<option value="O" <%=(user[0].gender=="O" )?"selected":""%>> Other </option>
+				</select><br><br>
+
+				Phone Number:<br>
+				<input type="text" name="phoneNumber" value="<%=user[0].phoneNumber%>"> <br><br>
+
+				Bio: <br>
+				<textarea id="bio" rows="5" cols="45"><%=user[0].bio%></textarea> <br><br>
+
+				Photo:<br>
+				<input type="text" name="portrait" value="<%=user[0].portrait%>"> <br><br>
+				<div class="buttons">
+					<button id="updateB">Update</button>
+		</form>
+		</div>
+
+		<button id="editB">Edit Post</button>
+
+		<form action="/feed">
+			<button id="backB">Back</button>
+		</form>

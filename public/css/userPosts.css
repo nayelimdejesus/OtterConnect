@@ -1,0 +1,143 @@
+body{
+	justify-content: center;
+	text-align: center;
+  background-image: linear-gradient(#002E4B, #0081B6);
+  color: white;
+  font-family: Bookman;
+}
+h1{
+  padding: 1%;
+  font-size: 80px;
+  margin-bottom: 2%;
+}
+.container{
+  margin-bottom: 45%;
+}
+.main{
+  display: flex;
+	margin: 30px;
+}
+.card{
+	width: 50%;
+	margin: 0 auto;
+	margin-top: 50px;
+  background-color: #002E4B;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 8px 0 rgba(0,0,0,0.19);
+  color: white;
+}
+.card-head{
+	display: flex;
+	padding: 10px;
+}
+.pfp{
+	width: 10%;
+}
+.profilePic{
+	width: 75%;
+	border-radius: 1000px;
+	height: auto;
+}
+.card-body{
+	display: flex;
+	padding:10px;
+}
+.paragraph{
+	text-align: left;
+	width: 50%;
+}
+.attachment{
+ width: 50%;
+}
+.photo{
+	width:50%;
+	height: auto;
+}
+.account{
+  color: white;
+  font-family: Bookman;
+}
+.date{
+	text-align: left;
+  padding-right: 65%;
+}
+.card-footer{
+	display: flex;
+}
+#signOutLink{
+  border-radius: 5px;
+}
+a{
+  text-decoration: none;
+}
+.head img{
+  width: 7%;
+  height: auto;
+  justify-content: right;
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  border-radius: 5%;
+
+}
+.likes{
+  display: flex;
+}
+.likes span{
+  position: absolute;
+  right: 3%;
+}
+#postId{
+  display: none;
+}
+a:link {
+  text-decoration: none;
+}
+
+nav a{
+  padding-right: 5%;
+  padding-left: 5%;
+  border-radius: 5px;
+  font-family: Bookman;
+}
+/* unvisited link */
+a:link {
+  color: White;
+}
+/* visited link */
+a:visited {
+  color: rgb(233, 233, 76);
+}
+/* mouse over link */
+a:hover {
+  color: white;
+  background-color: rgb(91, 161, 204);
+  text-decoration: none;
+}
+/* selected link */
+a:active {
+  color: lavender;
+}
+nav{
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  padding: 2px;
+}
+.deleter{
+	display: flex;
+	align-items: center;
+}
+.del{
+  position: absolute;
+  right: 3%;
+}
+#userLogout{
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 8px 0 rgba(0,0,0,0.19);
+  border-radius: 10px;
+}
+#userLogout a{
+  color: black;
+}
